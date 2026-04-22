@@ -660,16 +660,14 @@ process.on('SIGTERM', shutdown)
 process.on('SIGINT', shutdown)
 process.on('SIGHUP', shutdown)
 
-// Orphan watchdog: stdin events above don't reliably fire when the parent
-// chain (`bun run` wrapper → shell → us) is severed by a crash. Poll for
-// reparenting (POSIX) or a dead stdin pipe and self-terminate.
-const bootPpid = process.ppid
+// Orphan watchdog: belt-and-suspenders for the stdin 'end'/'close' handlers
+// above. Stdin is the MCP transport pipe inherited straight from the CLI; the
+// kernel closes it on any CLI death (clean, crash, SIGKILL, OOM) regardless of
+// intermediate wrappers. A ppid-change check used to live here but it
+// false-fires when the bun-run/shell wrapper exits or execs during normal
+// startup and we get reparented to init.
 setInterval(() => {
-  const orphaned =
-    (process.platform !== 'win32' && process.ppid !== bootPpid) ||
-    process.stdin.destroyed ||
-    process.stdin.readableEnded
-  if (orphaned) shutdown()
+  if (process.stdin.destroyed || process.stdin.readableEnded) shutdown()
 }, 5000).unref()
 
 // Commands are DM-only. Responding in groups would: (1) leak pairing codes via
