@@ -80,8 +80,7 @@
       "category": "database",
       "source": {
         "source": "url",
-        "url": "https://github.com/gemini-cli-extensions/alloydb.git",
-        "sha": "be8f5ca61cf8cbb4ac350bcfef7fa63fbd18401c"
+        "url": "https://github.com/gemini-cli-extensions/alloydb.git"
       },
       "homepage": "https://cloud.google.com/alloydb"
     },
