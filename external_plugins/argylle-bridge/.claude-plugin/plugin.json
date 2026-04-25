@@ -1,0 +1,6 @@
+{
+  "name": "argylle-bridge",
+  "description": "Argylle's bridge plugin — Telegram messaging (forked from claude-plugins-official/telegram) plus a remote codex events tail. Both surface as channel events so a single MCP server wakes the session for either source.",
+  "version": "0.1.0",
+  "keywords": ["telegram", "codex", "channel", "mcp", "bridge"]
+}
