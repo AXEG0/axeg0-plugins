@@ -1927,12 +1927,6 @@
         "url": "https://github.com/zscaler/zscaler-mcp-server.git"
       },
       "homepage": "https://github.com/zscaler/zscaler-mcp-server"
-    },
-    {
-      "name": "argylle-bridge",
-      "description": "Forked Telegram bridge with codex-events SSH tail inlined. Bridges both Telegram inbound messages and remote Codex CLI events into a single MCP channel \u2014 works around Claude Code's channel-routing bug for custom plugins.",
-      "category": "channels",
-      "source": "./external_plugins/argylle-bridge"
     }
   ]
 }
